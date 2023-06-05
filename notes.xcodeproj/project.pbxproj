@@ -10,6 +10,14 @@
 		99349A822A2D51AA00DDEA7C /* notesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99349A812A2D51AA00DDEA7C /* notesApp.swift */; };
 		99349A862A2D51AC00DDEA7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99349A852A2D51AC00DDEA7C /* Assets.xcassets */; };
 		99349A892A2D51AC00DDEA7C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99349A882A2D51AC00DDEA7C /* Preview Assets.xcassets */; };
+		99349A972A2DD1F900DDEA7C /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99349A962A2DD1F900DDEA7C /* Note.swift */; };
+		99349A992A2DD20E00DDEA7C /* NoteController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99349A982A2DD20E00DDEA7C /* NoteController.swift */; };
+		99349A9B2A2DD22D00DDEA7C /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99349A9A2A2DD22D00DDEA7C /* Home.swift */; };
+		99349A9D2A2DD27100DDEA7C /* NoteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99349A9C2A2DD27100DDEA7C /* NoteCard.swift */; };
+		99349AA32A2DD32600DDEA7C /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99349AA22A2DD32600DDEA7C /* Folder.swift */; };
+		99349AA52A2DD33700DDEA7C /* FolderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99349AA42A2DD33700DDEA7C /* FolderController.swift */; };
+		99349AA92A2DD3BB00DDEA7C /* FolderCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99349AA82A2DD3BB00DDEA7C /* FolderCard.swift */; };
+		99349AAB2A2DD3D000DDEA7C /* Folders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99349AAA2A2DD3D000DDEA7C /* Folders.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -17,6 +25,14 @@
 		99349A812A2D51AA00DDEA7C /* notesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notesApp.swift; sourceTree = "<group>"; };
 		99349A852A2D51AC00DDEA7C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		99349A882A2D51AC00DDEA7C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		99349A962A2DD1F900DDEA7C /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		99349A982A2DD20E00DDEA7C /* NoteController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteController.swift; sourceTree = "<group>"; };
+		99349A9A2A2DD22D00DDEA7C /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		99349A9C2A2DD27100DDEA7C /* NoteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCard.swift; sourceTree = "<group>"; };
+		99349AA22A2DD32600DDEA7C /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		99349AA42A2DD33700DDEA7C /* FolderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderController.swift; sourceTree = "<group>"; };
+		99349AA82A2DD3BB00DDEA7C /* FolderCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCard.swift; sourceTree = "<group>"; };
+		99349AAA2A2DD3D000DDEA7C /* Folders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folders.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +65,7 @@
 		99349A802A2D51AA00DDEA7C /* notes */ = {
 			isa = PBXGroup;
 			children = (
+				99349A9E2A2DD2C500DDEA7C /* folder */,
 				99349A8F2A2D531A00DDEA7C /* note */,
 				99349A812A2D51AA00DDEA7C /* notesApp.swift */,
 				99349A852A2D51AC00DDEA7C /* Assets.xcassets */,
@@ -68,32 +85,103 @@
 		99349A8F2A2D531A00DDEA7C /* note */ = {
 			isa = PBXGroup;
 			children = (
-				99349A922A2D534E00DDEA7C /* controllers */,
-				99349A912A2D534200DDEA7C /* views */,
-				99349A902A2D533100DDEA7C /* models */,
+				99349A902A2D533100DDEA7C /* model */,
+				99349A922A2D534E00DDEA7C /* controller */,
+				99349A912A2D534200DDEA7C /* presentation */,
 			);
 			path = note;
 			sourceTree = "<group>";
 		};
-		99349A902A2D533100DDEA7C /* models */ = {
+		99349A902A2D533100DDEA7C /* model */ = {
 			isa = PBXGroup;
 			children = (
+				99349A962A2DD1F900DDEA7C /* Note.swift */,
 			);
-			path = models;
+			path = model;
 			sourceTree = "<group>";
 		};
-		99349A912A2D534200DDEA7C /* views */ = {
+		99349A912A2D534200DDEA7C /* presentation */ = {
 			isa = PBXGroup;
 			children = (
+				99349A952A2DD1DD00DDEA7C /* views */,
+				99349A942A2DD1CD00DDEA7C /* pages */,
+			);
+			path = presentation;
+			sourceTree = "<group>";
+		};
+		99349A922A2D534E00DDEA7C /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				99349A982A2DD20E00DDEA7C /* NoteController.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		99349A942A2DD1CD00DDEA7C /* pages */ = {
+			isa = PBXGroup;
+			children = (
+				99349A9A2A2DD22D00DDEA7C /* Home.swift */,
+			);
+			path = pages;
+			sourceTree = "<group>";
+		};
+		99349A952A2DD1DD00DDEA7C /* views */ = {
+			isa = PBXGroup;
+			children = (
+				99349A9C2A2DD27100DDEA7C /* NoteCard.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
 		};
-		99349A922A2D534E00DDEA7C /* controllers */ = {
+		99349A9E2A2DD2C500DDEA7C /* folder */ = {
 			isa = PBXGroup;
 			children = (
+				99349A9F2A2DD2D100DDEA7C /* model */,
+				99349AA02A2DD2DE00DDEA7C /* controller */,
+				99349AA12A2DD2E900DDEA7C /* presentation */,
 			);
-			path = controllers;
+			path = folder;
+			sourceTree = "<group>";
+		};
+		99349A9F2A2DD2D100DDEA7C /* model */ = {
+			isa = PBXGroup;
+			children = (
+				99349AA22A2DD32600DDEA7C /* Folder.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		99349AA02A2DD2DE00DDEA7C /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				99349AA42A2DD33700DDEA7C /* FolderController.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		99349AA12A2DD2E900DDEA7C /* presentation */ = {
+			isa = PBXGroup;
+			children = (
+				99349AA62A2DD39100DDEA7C /* views */,
+				99349AA72A2DD39B00DDEA7C /* pages */,
+			);
+			path = presentation;
+			sourceTree = "<group>";
+		};
+		99349AA62A2DD39100DDEA7C /* views */ = {
+			isa = PBXGroup;
+			children = (
+				99349AA82A2DD3BB00DDEA7C /* FolderCard.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		99349AA72A2DD39B00DDEA7C /* pages */ = {
+			isa = PBXGroup;
+			children = (
+				99349AAA2A2DD3D000DDEA7C /* Folders.swift */,
+			);
+			path = pages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -167,6 +255,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				99349A822A2D51AA00DDEA7C /* notesApp.swift in Sources */,
+				99349AA92A2DD3BB00DDEA7C /* FolderCard.swift in Sources */,
+				99349A992A2DD20E00DDEA7C /* NoteController.swift in Sources */,
+				99349A9D2A2DD27100DDEA7C /* NoteCard.swift in Sources */,
+				99349AAB2A2DD3D000DDEA7C /* Folders.swift in Sources */,
+				99349AA52A2DD33700DDEA7C /* FolderController.swift in Sources */,
+				99349A9B2A2DD22D00DDEA7C /* Home.swift in Sources */,
+				99349A972A2DD1F900DDEA7C /* Note.swift in Sources */,
+				99349AA32A2DD32600DDEA7C /* Folder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,9 +406,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = gyekye.notes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -339,9 +438,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = gyekye.notes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
