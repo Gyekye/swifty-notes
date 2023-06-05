@@ -1,10 +1,10 @@
 import SwiftUI
 
 @main
-struct notesApp: App {
+struct NotesApp: App {
     var body: some Scene {
         WindowGroup {
-            EmptyView()
+            Home()
         }
     }
 }
