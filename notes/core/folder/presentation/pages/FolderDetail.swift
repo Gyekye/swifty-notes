@@ -11,6 +11,11 @@ struct FolderDetail: View {
     func greet() {
         print("Hello!")
     }
+    
+    let items = (1...10).map { "Item, keep your face to the sunshine and you cannot see the shadow \($0)  " }
+    let columns = [GridItem(.flexible()), GridItem(.flexible())]
+
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -26,13 +31,19 @@ struct FolderDetail: View {
                     }
                     Spacer()
                     Button(action: greet){
-                        Label("Add Note", systemImage: "folder.badge.plus")
-                            .padding(2)
-                    }
-                    .buttonBorderShape(.capsule)
-                    .buttonStyle(.borderedProminent)
+                        Label("Add Note", systemImage: "folder.badge.plus").padding(2)
+                    }.buttonBorderShape(.capsule)
+                     .buttonStyle(.borderedProminent)
+                    
                 }.padding(20)
                 Divider()
+                    LazyVGrid(columns: columns, spacing: 20) {
+                        ForEach(items, id: \.self) { item in
+                            NavigationLink(destination: NoteDetail()) {
+                                NoteCard()
+                            }
+                        }
+                }.padding()
             }
         }
     }

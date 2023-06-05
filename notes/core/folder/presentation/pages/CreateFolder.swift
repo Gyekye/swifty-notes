@@ -3,12 +3,11 @@ import SwiftUI
 
 struct CreateFolder: View {
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 
             }
             .navigationTitle("New Folder")
-            .navigationColor(.black)
         }
     }
 }

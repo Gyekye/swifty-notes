@@ -9,7 +9,6 @@ struct UserProfile: View {
                 
             }
             .navigationTitle("Profile")
-            .navigationColor(.black)
         }
     }
 }

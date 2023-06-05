@@ -1,16 +1,26 @@
-//
-//  Notes.swift
-//  notes
-//
-//  Created by richmond gyekye on 05/06/2023.
-//
-
 import SwiftUI
 
+
 struct NoteDetail: View {
+@State private var value = "Ths is the bodyof the textfield"
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            ZStack {
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.gray.opacity(0.2), lineWidth: 1)
+                    .padding(10)
+                
+                TextEditor(text: $value)
+                    .padding(15)
+                
+                }.toolbar {
+                 ToolbarItem(placement: .navigationBarTrailing) {
+                     Button(action: {}) {Image(systemName: "paperplane.fill")
+                 }
+              }
+        }.navigationTitle("Note Title")
     }
+}
 }
 
 struct Notes_Previews: PreviewProvider {

@@ -22,9 +22,8 @@ struct FolderCard: View {
                     .foregroundColor(.purple)
                 Divider()
             }
-        }
-        .background(.gray.opacity(0.01))
-        .padding([.vertical], 15)
+        }.background(.white)
+         .padding([.vertical], 15)
     }
 }
 

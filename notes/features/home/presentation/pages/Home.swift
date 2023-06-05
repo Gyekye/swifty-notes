@@ -17,7 +17,7 @@ struct Home: View {
                         Label("Profile",systemImage:"person.crop.circle.fill")
                 }
             }
-        }
+        } 
     }
 
 struct Home_Previews: PreviewProvider {
