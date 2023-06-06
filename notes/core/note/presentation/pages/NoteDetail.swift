@@ -2,7 +2,14 @@ import SwiftUI
 
 
 struct NoteDetail: View {
-@State private var value = "Ths is the bodyof the textfield"
+    
+    // External dependencies
+    var note: Note
+    
+    // Internal State dependencies
+    @State private var value = "Ths is the bodyof the textfield"
+    
+    // UI
     var body: some View {
         NavigationStack {
             ZStack {
@@ -18,14 +25,15 @@ struct NoteDetail: View {
                      Button(action: {}) {Image(systemName: "paperplane.fill")
                  }
               }
-        }.navigationTitle("Note Title")
-            
+            }.navigationTitle(note.title)
+        }.onAppear {
+            value = note.content
+        }
     }
-}
 }
 
 struct Notes_Previews: PreviewProvider {
     static var previews: some View {
-        NoteDetail()
+        NoteDetail(note:  Note(id: "100", title: "First Time", content: "Keep your face to the sunshine and the shadow disappears", date: "23 May 2033"))
     }
 }

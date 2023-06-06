@@ -1,23 +1,21 @@
-//
-//  NoteCard.swift
-//  notes
-//
-//  Created by richmond gyekye on 05/06/2023.
-//
-
 import SwiftUI
 
+
 struct NoteCard: View {
+    // External dependencies
+    var note: Note
+    
+    // UI
     var body: some View {
         VStack(alignment:.leading) {
-            Text("Note Title")
+            Text(note.title)
                 .bold()
             Spacer()
-            Text("Item, keep your face to the sunshine and you cannot see the shadow")
+            Text(note.content)
                 .foregroundColor(.black)
                 .multilineTextAlignment(.leading)
             Spacer(minLength: 20)
-            Text("23 May 2022")
+            Text(note.date)
                 .font(.caption)
                 .foregroundColor(.gray.opacity(0.8))
             
@@ -30,6 +28,6 @@ struct NoteCard: View {
 
 struct NoteCard_Previews: PreviewProvider {
     static var previews: some View {
-        NoteCard()
+        NoteCard(note: Note(id: "100", title: "First Time", content: "Keep your face to the sunshine and the shadow disappears", date: "23 May 2033"))
     }
 }

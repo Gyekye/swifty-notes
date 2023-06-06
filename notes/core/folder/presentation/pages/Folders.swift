@@ -2,11 +2,15 @@ import SwiftUI
 
 
 struct Folders: View {
+    
     // Internal state dependencies
     @State private var sheetPresented = false
     @FocusState private var noteTitleFieldIsFocused: Bool
     @State private var folderTitle = "New folder"
     @State private var folderBody = "Add descriptiom"
+    
+    // Internal dependencies
+    private var folders: [Folder] = []
     
     // External state dependencie
     
@@ -15,9 +19,23 @@ struct Folders: View {
      var body: some View {
          NavigationStack {
              ScrollView {
-                 ForEach(0 ..< 10) { item in
-                     NavigationLink(destination: FolderDetail()) {
-                         FolderCard()
+                 if(folders.count == 0 ){
+                     VStack {
+                         Text("Oops 😬, No Folders")
+                             .font(.title)
+                             .padding([.bottom], 10)
+                         Label("Add Folder", systemImage: "square.grid.3x1.folder.fill.badge.plus")
+                             .foregroundColor(.purple)
+                             .onTapGesture {
+                                 sheetPresented = true
+                             }
+                     }.frame(height: 600)
+                 }
+                 else{
+                     ForEach(folders, id: \.self) { item in
+                         NavigationLink(destination: FolderDetail(folder: item)) {
+                             FolderCard(folder: item, index: item.id)
+                         }
                      }
                  }
              }.toolbar {

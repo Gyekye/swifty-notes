@@ -7,8 +7,9 @@ struct FolderDetail: View {
     @State private var noteTitle = "New Note"
     @State private var noteBody = "Add descriptiom"
     
-    // Internal dependencies
-    let items = (1...10).map { "Item, keep your face to the sunshine and you cannot see the shadow \($0)  " }
+    // External dependencies
+    var folder: Folder
+    
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
 
     
@@ -17,7 +18,7 @@ struct FolderDetail: View {
             ScrollView {
                 HStack(alignment:.bottom) {
                     VStack(alignment:.leading) {
-                        Label("20 notes", systemImage: "note.text")
+                        Label("\(folder.notes.count) notes", systemImage: "note.text")
                             .font(.system(size: 16))
                             .padding([.top], -15)
                             .foregroundColor(.purple)
@@ -33,14 +34,28 @@ struct FolderDetail: View {
                     
                 }.padding(20)
                 Divider()
+                    
+                if(folder.notes.count == 0) {
+                    VStack {
+                        Text("Oops 😬, No Notes")
+                            .font(.title)
+                            .padding([.bottom], 10)
+                        Label("Add Note", systemImage: "square.grid.3x1.folder.fill.badge.plus")
+                            .foregroundColor(.purple)
+                            .onTapGesture {
+                                sheetPresented = true
+                        }
+                    }.frame(height: 600)
+                } else {
                     LazyVGrid(columns: columns, spacing: 20) {
-                        ForEach(items, id: \.self) { item in
-                            NavigationLink(destination: NoteDetail()) {
-                                NoteCard()
+                        ForEach(folder.notes, id: \.self) { item in
+                            NavigationLink(destination: NoteDetail(note: item)) {
+                                NoteCard(note: item)
                             }
                         }
-                }.padding()
-            }.navigationTitle("Note Title")
+                    }.padding()
+                }
+            }.navigationTitle(folder.title)
              .sheet(isPresented: $sheetPresented){
                     VStack(alignment: .center) {
                         Spacer(minLength: 100)
@@ -79,6 +94,10 @@ struct FolderDetail: View {
 
 struct FolderDetail_Previews: PreviewProvider {
     static var previews: some View {
-        FolderDetail()
+        FolderDetail(folder: Folder(id: "01", title: "Finances 101", description: "For my finances",
+                        notes: [],
+                date: "20 April 2023"
+            )
+        )
     }
 }
