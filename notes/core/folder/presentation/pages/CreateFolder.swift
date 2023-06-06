@@ -4,8 +4,7 @@ import SwiftUI
 struct CreateFolder: View {
     var body: some View {
         NavigationStack {
-            List {
-                
+            VStack {
             }
             .navigationTitle("New Folder")
         }

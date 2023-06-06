@@ -19,6 +19,7 @@ struct NoteDetail: View {
                  }
               }
         }.navigationTitle("Note Title")
+            
     }
 }
 }

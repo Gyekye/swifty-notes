@@ -6,11 +6,11 @@ struct Home: View {
             TabView {
                 Folders()
                     .tabItem {
-                        Label("Folders", systemImage: "folder.fill")
+                        Label("Folders",systemImage: "folder.fill")
                 }
-                CreateFolder()
+                Text("Notifications")
                     .tabItem {
-                        Label("New Folder", systemImage: "folder.fill.badge.plus")
+                        Label("Notifications",systemImage:"bell.fill")
                 }
                 UserProfile()
                     .tabItem {
