@@ -2,6 +2,7 @@ import SwiftUI
 
 
 struct Home: View {
+    // UI
     var body: some View {
             TabView {
                 Folders()
@@ -22,6 +23,6 @@ struct Home: View {
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        Home()
+        Home().environmentObject(FolderController())
     }
 }

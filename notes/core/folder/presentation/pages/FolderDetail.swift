@@ -4,8 +4,11 @@ import SwiftUI
 struct FolderDetail: View {
     // Internal state dependencies
     @State private var sheetPresented = false
-    @State private var noteTitle = "New Note"
-    @State private var noteBody = "Add descriptiom"
+    @State private var noteTitle = ""
+    @State private var noteBody = ""
+    
+    // External state dependencie
+    @EnvironmentObject private var controller: FolderController
     
     // External dependencies
     var folder: Folder
@@ -18,10 +21,19 @@ struct FolderDetail: View {
             ScrollView {
                 HStack(alignment:.bottom) {
                     VStack(alignment:.leading) {
-                        Label("\(folder.notes.count) notes", systemImage: "note.text")
-                            .font(.system(size: 16))
-                            .padding([.top], -15)
-                            .foregroundColor(.purple)
+                        if(folder.notes.count == 0) {
+                            Label("No note", systemImage: "note.text")
+                                .font(.system(size: 18))
+                                .padding([.top], -10)
+                                .bold()
+                                .foregroundColor(.purple)
+                        } else {
+                            Label("\(folder.notes.count) note(s)", systemImage: "note.text")
+                                .font(.system(size: 18))
+                                .padding([.top], -10)
+                                .bold()
+                                .foregroundColor(.purple)
+                        }
                     }
                     Spacer()
                     Button(action: {
@@ -60,7 +72,7 @@ struct FolderDetail: View {
                     VStack(alignment: .center) {
                         Spacer(minLength: 100)
                         Text("Add New Note")
-                            .font(.system(size: 25, weight: .black))
+                            .font(.system(size: 20, weight: .black))
                         TextField("Note title", text: $noteTitle)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding(5)
@@ -78,9 +90,26 @@ struct FolderDetail: View {
                         GeometryReader { geometry in
                             HStack(alignment: .center) {
                                 Button(action: {
+                                    if(noteTitle.isEmpty){
+                                        sheetPresented = false
+                                    } else {
+                                        var data = Note(
+                                          id: "",
+                                          title: noteTitle,
+                                          content: noteBody,
+                                          date: ""
+                                        )
+                                        controller.createNote(
+                                            note: &data,
+                                            folder: folder
+                                        )
+                                        noteTitle = ""
+                                        noteBody  = ""
+                                        sheetPresented =  false
+                                    }
                                     sheetPresented =  false
                                 }){
-                                   Label("Add Folder", systemImage: "text.badge.plus").padding(10)
+                                   Label("Add Note", systemImage: "text.badge.plus").padding(10)
                                  }.buttonBorderShape(.capsule)
                                   .buttonStyle(.borderedProminent)
                                   .padding([.top], 20)
@@ -94,10 +123,13 @@ struct FolderDetail: View {
 
 struct FolderDetail_Previews: PreviewProvider {
     static var previews: some View {
-        FolderDetail(folder: Folder(id: "01", title: "Finances 101", description: "For my finances",
-                        notes: [],
+        FolderDetail(folder: Folder(
+                id: "01",
+                title: "Finances 101",
+                description: "For my finances",
+                notes: [],
                 date: "20 April 2023"
             )
-        )
+        ).environmentObject(FolderController())
     }
 }

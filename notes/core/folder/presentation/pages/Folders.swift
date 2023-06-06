@@ -1,25 +1,21 @@
 import SwiftUI
 
-
 struct Folders: View {
     
     // Internal state dependencies
     @State private var sheetPresented = false
-    @FocusState private var noteTitleFieldIsFocused: Bool
-    @State private var folderTitle = "New folder"
-    @State private var folderBody = "Add descriptiom"
-    
-    // Internal dependencies
-    private var folders: [Folder] = []
+    @State private var folderTitle = ""
+    @State private var folderBody = "Add description"
+
     
     // External state dependencie
-    
+    @EnvironmentObject private var controller: FolderController
     
     // View
      var body: some View {
          NavigationStack {
              ScrollView {
-                 if(folders.count == 0 ){
+                 if(controller.folders.count == 0 ){
                      VStack {
                          Text("Oops 😬, No Folders")
                              .font(.title)
@@ -32,9 +28,9 @@ struct Folders: View {
                      }.frame(height: 600)
                  }
                  else{
-                     ForEach(folders, id: \.self) { item in
+                     ForEach(controller.folders, id: \.self) { item in
                          NavigationLink(destination: FolderDetail(folder: item)) {
-                             FolderCard(folder: item, index: item.id)
+                             FolderCard(folder: item)
                          }
                      }
                  }
@@ -42,7 +38,6 @@ struct Folders: View {
                  ToolbarItem(placement: .navigationBarTrailing) {
                      Button(action: {
                          sheetPresented = true
-                         noteTitleFieldIsFocused = true
                      }) {
                          Image(systemName: "square.grid.3x1.folder.fill.badge.plus")
                      }
@@ -70,7 +65,21 @@ struct Folders: View {
                       GeometryReader { geometry in
                           HStack(alignment: .center) {
                               Button(action: {
-                                  sheetPresented =  false
+                                  if(folderTitle.isEmpty){
+                                      sheetPresented = false
+                                  } else {
+                                      let data = Folder(
+                                        id: "",
+                                        title: folderTitle,
+                                        description: folderBody,
+                                        notes: [],
+                                        date: ""
+                                      )
+                                      controller.createFolder(folder: data)
+                                      folderTitle = ""
+                                      folderBody = "Add description"
+                                      sheetPresented =  false
+                                  }
                               }){
                                  Label("Add Folder", systemImage: "folder.badge.plus").padding(10)
                                }.buttonBorderShape(.capsule)
@@ -80,12 +89,15 @@ struct Folders: View {
                       }
                   }.padding()
               }
+              .onAppear {
+                  controller.listFolders()
+              }
          }
      }
 }
 
 struct Folders_Previews: PreviewProvider {
     static var previews: some View {
-        Folders()
+        Folders().environmentObject(FolderController())
     }
 }
